@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_XAML", "01_XAML\01_XAML.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_Views", "02_Views\02_Views.csproj", "{77A68D8C-995D-4FEB-8595-863CFC99B0BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutControls", "LayoutControls\LayoutControls.csproj", "{B7563F2E-243C-4E6B-86F3-39BABD86E04D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_LayoutControls", "LayoutControls\03_LayoutControls.csproj", "{B7563F2E-243C-4E6B-86F3-39BABD86E04D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
