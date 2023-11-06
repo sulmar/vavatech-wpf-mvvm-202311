@@ -1,0 +1,51 @@
+﻿<Window x:Class="_03_LayoutControls.DockPanelView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_03_LayoutControls"
+        mc:Ignorable="d"
+        Title="DockPanelView" Height="450" Width="800">
+    <Grid>
+
+        <DockPanel LastChildFill="True">
+            <Button  
+                DockPanel.Dock="Top"     
+               Height="50"
+               Background="Blue" 
+               Foreground="White"
+               FontSize="16">Button World</Button>
+
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Background="Red">
+                    Button 4
+                </Button>
+
+                <Button Background="Pink" Grid.Column="1">
+                    Button 5
+                </Button>
+            </Grid>
+
+
+            <Button 
+                Width="150"
+              Background="Green" 
+              Foreground="White"
+              FontSize="16">Button 2</Button>
+
+
+
+            <Button
+                Background="Orange" 
+                    Foreground="White"
+                    FontSize="16">Button 3</Button>
+
+
+
+        </DockPanel>
+    </Grid>
+</Window>
