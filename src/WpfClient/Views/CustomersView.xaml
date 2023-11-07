@@ -19,11 +19,26 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding FirstName}" Margin="5" />
-                        <TextBlock Text="{Binding LastName}" Margin="5" />
-                        <TextBlock Text="{Binding Email}"  Margin="5"/>
-                        <TextBlock Text="{Binding ShippingAddress.City}" Margin="5" />
-                        <TextBlock Text="{Binding ShippingAddress.Street}" Margin="5" />
+                        <StackPanel.Resources>
+
+                            <Style x:Key="DefaultTextBlockStyle" TargetType="TextBlock">
+                                <Setter Property="Margin" Value="10" />
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="Width" Value="70" />
+                            </Style>
+
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource DefaultTextBlockStyle}"/>
+
+                            <Style x:Key="LongTextBlockStyle" TargetType="TextBlock"
+                                   BasedOn="{StaticResource DefaultTextBlockStyle}" >
+                                <Setter Property="Width" Value="200" />
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="{Binding FirstName}" />
+                        <TextBlock Text="{Binding LastName}"  />
+                        <TextBlock Text="{Binding Email}" Style="{StaticResource LongTextBlockStyle}" />
+                        <TextBlock Text="{Binding ShippingAddress.City}"  Style="{StaticResource LongTextBlockStyle}" />
+                        <TextBlock Text="{Binding ShippingAddress.Street}"    />
                         <CheckBox IsChecked="{Binding IsRemoved}" />
                     </StackPanel>
                 </DataTemplate>
