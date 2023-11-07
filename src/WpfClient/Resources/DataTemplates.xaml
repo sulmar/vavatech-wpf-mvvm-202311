@@ -7,7 +7,18 @@
         <StackPanel Orientation="Horizontal" Background="Transparent">
             <Button>Apply</Button>
             <TextBlock Text="{Binding Name}"/>
-            <TextBlock Text="{Binding Price}" />
+            <TextBlock Text="{Binding Price}" >
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsOverPriceLimit}" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <TextBlock Text="{Binding Color}"  >
                 <TextBlock.Style>
                     <Style TargetType="TextBlock" BasedOn="{StaticResource DefaultTextBlockStyle}">

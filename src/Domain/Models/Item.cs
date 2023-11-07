@@ -14,6 +14,10 @@ public abstract partial class Item : BaseEntity
     public string Name { get; set; }
     public string ShortName => $"{Name.Substring(0, 5)}...";
 
+    private const decimal OverPriceLimit = 100;
+
+    public bool IsOverPriceLimit => Price > OverPriceLimit;
+
     [ObservableProperty]
     private decimal price;
 

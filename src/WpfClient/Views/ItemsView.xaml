@@ -38,7 +38,7 @@
             <TextBox Text="{Binding SelectedItem.Price}" />
 
             <Button Command="{Binding DiscountPriceCommand}" Content="Discount Price"
-                    MouseEnter="{me:MyExtension}"
+                   
                     >
                 <!--<i:Interaction.Behaviors>
                     <b:ButtonBehavior Color="{Binding SelectedItem.Name}" />
