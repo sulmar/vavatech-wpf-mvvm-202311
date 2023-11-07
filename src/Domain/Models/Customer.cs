@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace Domain.Models;
 
-public class Customer : BaseEntity
+public partial class Customer : BaseEntity
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FullName))]
+    private string firstName;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FullName))]
+    private string lastName;
     public string FullName => $"{FirstName} {LastName}";
     public string Email { get; set; }
     public Address ShippingAddress { get; set; }

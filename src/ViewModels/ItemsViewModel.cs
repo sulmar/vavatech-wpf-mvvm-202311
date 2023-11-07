@@ -1,17 +1,22 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
 using Infrastructure.Fakers;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace ViewModels;
 
-public class ItemsViewModel : BaseViewModel
+public partial class ItemsViewModel : BaseViewModel
 {
-    public IList<Item> Items { get; }
+    [ObservableProperty]
+    private ObservableCollection<Item> items;
 
-    public Item SelectedItem { get; set; }
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(DiscountPriceCommand))]
+    private Item selectedItem;
 
     public ItemsViewModel()
         : this(new InMemoryItemRepository(
@@ -23,15 +28,17 @@ public class ItemsViewModel : BaseViewModel
 
     public ItemsViewModel(IItemRepository repository)
     {
-        Items = repository.GetAll().ToList();
-
-
+        Items = new ObservableCollection<Item>(repository.GetAll());
     }
 
-    public ICommand DiscountPriceCommand => new RelayCommand(DiscountPrice);
-
-    public void DiscountPrice()
+    [RelayCommand(CanExecute = nameof(CanDiscountPrice))]
+    private void DiscountPrice()
     {
         SelectedItem.Price -= 1;
+    }
+
+    private bool CanDiscountPrice()
+    {
+        return SelectedItem?.Price > 100;
     }
 }

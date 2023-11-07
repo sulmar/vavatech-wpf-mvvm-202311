@@ -1,6 +1,8 @@
-﻿namespace Domain.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public abstract class Base
+namespace Domain.Models;
+
+public abstract class Base : ObservableObject
 {
   
 }
