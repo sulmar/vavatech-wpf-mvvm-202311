@@ -9,42 +9,60 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CustomersView">
 
+    <Page.Resources>
+
+        <Style x:Key="DefaultButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Blue" />
+        </Style>
+
+        <Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}" />
+
+        <Style x:Key="DefaultTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Width" Value="70" />
+        </Style>
+
+        <Style TargetType="TextBlock" BasedOn="{StaticResource DefaultTextBlockStyle}" />
+
+
+
+        <Style x:Key="LongTextBlockStyle" TargetType="TextBlock"
+BasedOn="{StaticResource DefaultTextBlockStyle}" >
+            <Setter Property="Width" Value="200" />
+        </Style>
+    </Page.Resources>
+
     <Page.DataContext>
         <viewModel:CustomersViewModel />
     </Page.DataContext>
 
     <Grid>
-        <ListBox ItemsSource="{Binding Customers}">
 
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel.Resources>
+        <StackPanel>
 
-                            <Style x:Key="DefaultTextBlockStyle" TargetType="TextBlock">
-                                <Setter Property="Margin" Value="10" />
-                                <Setter Property="FontSize" Value="16" />
-                                <Setter Property="Width" Value="70" />
-                            </Style>
+           
+            <Button>Button 2</Button>
+            <Button>Button 3</Button>
 
-                            <Style TargetType="TextBlock" BasedOn="{StaticResource DefaultTextBlockStyle}"/>
+            <ListBox ItemsSource="{Binding Customers}">
 
-                            <Style x:Key="LongTextBlockStyle" TargetType="TextBlock"
-                                   BasedOn="{StaticResource DefaultTextBlockStyle}" >
-                                <Setter Property="Width" Value="200" />
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBlock Text="{Binding FirstName}" />
-                        <TextBlock Text="{Binding LastName}"  />
-                        <TextBlock Text="{Binding Email}" Style="{StaticResource LongTextBlockStyle}" />
-                        <TextBlock Text="{Binding ShippingAddress.City}"  Style="{StaticResource LongTextBlockStyle}" />
-                        <TextBlock Text="{Binding ShippingAddress.Street}"    />
-                        <CheckBox IsChecked="{Binding IsRemoved}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            
-        </ListBox>
-        
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding FirstName}"  />
+                            <TextBlock Text="{Binding LastName}"  />
+                            <TextBlock Text="{Binding Email}" Style="{StaticResource LongTextBlockStyle}" />
+                            <TextBlock Text="{Binding ShippingAddress.City}"  Style="{StaticResource LongTextBlockStyle}" />
+                            <TextBlock Text="{Binding ShippingAddress.Street}"    />
+                            <CheckBox IsChecked="{Binding IsRemoved}" />
+                            <Button>Button 1</Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+        </StackPanel>
     </Grid>
 </Page>

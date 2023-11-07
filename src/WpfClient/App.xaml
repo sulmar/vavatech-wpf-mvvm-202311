@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:WpfClient"
              StartupUri="Views/ShellView.xaml">
     <Application.Resources>
-         
+
+        
+
     </Application.Resources>
 </Application>
