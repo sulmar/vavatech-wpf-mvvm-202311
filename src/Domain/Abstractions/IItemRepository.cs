@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Domain.Abstractions;
 
-public interface ICustomerRepository : IEntityRepository<Customer>
+public interface IItemRepository : IEntityRepository<Item>
 {
-
 }
