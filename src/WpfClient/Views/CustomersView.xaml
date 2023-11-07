@@ -21,8 +21,10 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding FirstName}" Margin="5" />
                         <TextBlock Text="{Binding LastName}" Margin="5" />
+                        <TextBlock Text="{Binding Email}"  Margin="5"/>
                         <TextBlock Text="{Binding ShippingAddress.City}" Margin="5" />
                         <TextBlock Text="{Binding ShippingAddress.Street}" Margin="5" />
+                        <CheckBox IsChecked="{Binding IsRemoved}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
