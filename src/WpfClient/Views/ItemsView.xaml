@@ -11,13 +11,24 @@
      
       Title="ItemsView">
 
+    <Page.Resources>
+        <SolidColorBrush x:Key="AlertColorBrush">Orange</SolidColorBrush>
+    </Page.Resources>
+
     <Page.DataContext>
         <viewModels:ItemsViewModel />
     </Page.DataContext>
 
     <Grid>
 
-        <ListBox ItemsSource="{Binding Items}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ListBox ItemsSource="{Binding Items}"
+                 SelectedItem="{Binding SelectedItem}"
+                 >
 
             <ListBox.Resources>
 
@@ -27,12 +38,25 @@
                         <TextBlock Text="{Binding Price}" />
                     </StackPanel>
                 </UserControl>-->
-                
+
                 <DataTemplate DataType="{x:Type model:Product}" >
                     <StackPanel Orientation="Horizontal" Background="Transparent">
-                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding Name}"/>
                         <TextBlock Text="{Binding Price}" />
-                        <TextBlock Text="{Binding Color}" />
+                        <TextBlock Text="{Binding Color}"  >
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource DefaultTextBlockStyle}">
+
+                                    <Setter Property="Foreground" Value="Red" />
+
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Color}" Value="orange">
+                                            <Setter Property="Foreground" Value="{StaticResource AlertColorBrush}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                         <TextBlock Text="{Binding Weight}" />
                     </StackPanel>
                 </DataTemplate>
@@ -46,9 +70,16 @@
                 </DataTemplate>
             </ListBox.Resources>
 
-          
+
 
         </ListBox>
+
+        <StackPanel Grid.Column="1">
+            <TextBox Text="{Binding SelectedItem.ShortName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+            <TextBox Text="{Binding SelectedItem.Price}" />
+
+            <Button Command="{Binding DiscountPriceCommand}">Discount Price</Button>
+        </StackPanel>
 
     </Grid>
 </Page>
