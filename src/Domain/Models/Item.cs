@@ -14,15 +14,36 @@ public abstract partial class Item : BaseEntity
     public string Name { get; set; }
     public string ShortName => $"{Name.Substring(0, 5)}...";
 
-    private const decimal OverPriceLimit = 100;
+    private const decimal BelowPriceLimit = 100;
+    private const decimal OverPriceLimit = 800;
 
-    public bool IsOverPriceLimit => Price > OverPriceLimit;
+    // public bool IsOverPriceLimit => Price > OverPriceLimit;
+
+    public PriceLimits PriceLimit
+    {
+        get
+        {
+            return Price switch   // Match Patterns
+            {
+                < BelowPriceLimit => PriceLimits.Low,
+                > OverPriceLimit => PriceLimits.High,
+                _ => PriceLimits.Regular,
+            };
+        }
+    }
 
     [ObservableProperty]
     private decimal price;
 
 
 
+}
+
+public enum PriceLimits
+{
+    Low,
+    Regular,
+    High
 }
 
 public class Product : Item

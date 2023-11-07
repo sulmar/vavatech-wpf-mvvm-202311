@@ -12,7 +12,10 @@
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground" Value="Black"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsOverPriceLimit}" Value="True">
+                            <DataTrigger Binding="{Binding PriceLimit}" Value="{x:Static model:PriceLimits.Low}">
+                                <Setter Property="Foreground" Value="Green" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding PriceLimit}" Value="{x:Static model:PriceLimits.High}">
                                 <Setter Property="Foreground" Value="Red" />
                             </DataTrigger>
                         </Style.Triggers>
