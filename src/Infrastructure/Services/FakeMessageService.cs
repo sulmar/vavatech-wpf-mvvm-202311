@@ -13,10 +13,30 @@ public class FakeMessageService : IMessageService
     {
         Console.WriteLine(message);
     }
+
+    private void Release()
+    {
+        Console.WriteLine("Usun plik tymczasowy");
+    }
+
+    public void Dispose()
+    {
+        Release();
+    }
 }
 
 public class RealMessageService : IMessageService
 {
+    public void Dispose()
+    {
+        TearDown();
+    }
+
+    private void TearDown()
+    {
+        throw new NotImplementedException();
+    }
+
     public void Send(Message message)
     {
         throw new NotImplementedException();

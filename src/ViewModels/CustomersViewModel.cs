@@ -19,26 +19,58 @@ public partial class CustomersViewModel : BaseViewModel
     private readonly IEnumerable<IMessageService> messageServices;
 
     public CustomersViewModel()
-    {    
+    {
     }
 
     public CustomersViewModel(ICustomerRepository repository, IEnumerable<IMessageService> messageServices)
     {
         Customers = new ObservableCollection<Customer>(repository.GetAll());
+
+        // Customers.AddItemPropertyChanged(Customer_PropertyChanged);
+
+        // Customers.AddItemPropertyChanged(nameof(Customer.IsRemoved), RemoveCommand.NotifyCanExecuteChanged());
+
         this.messageServices = messageServices;
     }
 
-    [RelayCommand(CanExecute =nameof(CanSend))]
+    private void Customer_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(Customer.IsRemoved))
+        {
+            RemoveCommand.NotifyCanExecuteChanged();
+        }
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSend))]
     void Send()
     {
         var message = new Message(
-            $"Send message to {SelectedCustomer.Email}", 
-            "Message", 
+            $"Send message to {SelectedCustomer.Email}",
+            "Message",
             SelectedCustomer.Email, true);
 
-        foreach(var messageService in messageServices)
+        foreach (var messageService in messageServices)
         {
+            //try
+            //{
+            //    messageService.Send(message);
+            //}
+            //catch (Exception e)
+            //{
+
+            //}
+            //finally
+            //{
+            //    messageService.Dispose();
+            //}
+
+            using (messageService)
+            
             messageService.Send(message);
+
+            throw new Exception();
+            
+
         }
     }
 
@@ -55,10 +87,12 @@ public partial class CustomersViewModel : BaseViewModel
     bool CanSend => isSelectedCustomer;
 
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanRemove))]
     void Remove(Customer customer)
     {
-        if (Customers.Contains(customer))   
+        if (Customers.Contains(customer))
             Customers.Remove(customer);
     }
+
+    bool CanRemove(Customer customer) => !customer.IsRemoved;
 }

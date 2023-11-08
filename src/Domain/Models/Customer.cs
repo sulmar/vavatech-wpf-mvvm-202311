@@ -19,7 +19,9 @@ public partial class Customer : BaseEntity
     public string FullName => $"{FirstName} {LastName}";
     public string Email { get; set; }
     public Address ShippingAddress { get; set; }
-    public bool IsRemoved { get; set; }
+
+    [ObservableProperty]
+    private bool isRemoved;
 }
 
 public class Address : Base

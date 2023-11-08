@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Abstractions;
 
-public interface IMessageService
+public interface IMessageService : IDisposable
 {
     void Send(Message message);
 }
