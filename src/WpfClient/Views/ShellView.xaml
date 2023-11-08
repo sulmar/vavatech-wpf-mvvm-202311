@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClient.Views"
+        xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
         mc:Ignorable="d"
+
         Title="ShellView" Height="450" Width="800">
+
+    <d:Window.DataContext>
+        <vm:ShellViewModel />
+    </d:Window.DataContext>
     <Grid>
-        <Frame Source="CustomersView.xaml" />
+        <DockPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <Button Content="Customers" Command="{Binding NavigateToCustomersCommand}" />
+                <Button Content="Items" Command="{Binding NavigateToItemsCommand}" />
+            </StackPanel>
+            <Frame Name="ContentFrame" Source="CustomersView.xaml" />
+        </DockPanel>
+      
     </Grid>
 </Window>

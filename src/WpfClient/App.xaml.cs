@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using ViewModels;
+using WpfClient.Services;
+using WpfClient.Views;
 
 namespace WpfClient
 {
@@ -28,6 +30,11 @@ namespace WpfClient
         public App()
         {
             Services = ConfigureServices();
+
+            var navigation = Services.GetService<INavigationService>();
+
+            navigation.RegisterRoute("Customers", typeof(CustomersView));
+            navigation.RegisterRoute("Items", typeof(ItemsView));
 
             this.InitializeComponent();
         }
@@ -49,6 +56,12 @@ namespace WpfClient
 
             services.AddSingleton<IMessageService, FakeMessageService>();
             services.AddSingleton<IMessageService, RealMessageService>();
+
+            services.AddSingleton<ShellViewModel>();
+            services.AddSingleton<INavigationService, FrameNavigationService>();
+
+            services.AddSingleton<CustomersView>();
+            services.AddSingleton<ItemsView>();
 
             return services.BuildServiceProvider();
 
