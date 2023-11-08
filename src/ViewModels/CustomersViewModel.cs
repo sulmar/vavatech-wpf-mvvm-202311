@@ -26,7 +26,7 @@ public partial class CustomersViewModel : BaseViewModel
     {
         Customers = new ObservableCollection<Customer>(repository.GetAll());
 
-        // Customers.AddItemPropertyChanged(Customer_PropertyChanged);
+        Customers.AddItemPropertyChanged(Customer_PropertyChanged);
 
         // Customers.AddItemPropertyChanged(nameof(Customer.IsRemoved), RemoveCommand.NotifyCanExecuteChanged());
 
@@ -66,11 +66,7 @@ public partial class CustomersViewModel : BaseViewModel
 
             using (messageService)
             
-            messageService.Send(message);
-
-            throw new Exception();
-            
-
+            messageService.Send(message);            
         }
     }
 
