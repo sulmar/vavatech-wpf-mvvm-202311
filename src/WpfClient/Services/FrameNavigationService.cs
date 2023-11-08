@@ -1,13 +1,11 @@
 ﻿using Domain.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfClient.Services;
+
 
 internal class FrameNavigationService : INavigationService
 {
@@ -16,17 +14,12 @@ internal class FrameNavigationService : INavigationService
     public FrameNavigationService()
     {
         views = new Dictionary<string, Type>();
-
-     
     }
-
 
     public void RegisterRoute(string route, Type type)
     {
         views.Add(route, type);
     }
-
-
 
     public void NavigateTo(string route)
     {
