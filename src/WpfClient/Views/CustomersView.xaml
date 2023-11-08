@@ -9,15 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CustomersView">
 
-    <Page.Resources>
-
-      
-    </Page.Resources>
-
-    <Page.DataContext>
-        <viewModel:CustomersViewModel />
-    </Page.DataContext>
-
     <Grid>
 
         <StackPanel>
