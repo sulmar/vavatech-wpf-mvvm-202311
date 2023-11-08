@@ -5,9 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfClient.Views"
       xmlns:viewModel="clr-namespace:ViewModels;assembly=ViewModels"
+      xmlns:c="clr-namespace:WpfClient.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CustomersView">
+
+    <Page.Resources>
+        <c:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" FalseValue="Hidden" />
+    </Page.Resources>
 
     <!--<d:Page.DataContext>
         <viewModel:CustomersViewModel/>
@@ -27,16 +32,19 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
+                            <Button Background="Red" Foreground="White" Content="Usuń" 
+               Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.RemoveCommand}"
+               CommandParameter="{Binding .}"
+               Visibility="{Binding IsRemoved, Converter={StaticResource BooleanToVisibilityConverter}}"
+               
+               />
                             <TextBlock Text="{Binding FirstName}"  />
                             <TextBlock Text="{Binding LastName}"  />
                             <TextBlock Text="{Binding Email}" Style="{StaticResource LongTextBlockStyle}" />
                             <TextBlock Text="{Binding ShippingAddress.City}"  Style="{StaticResource LongTextBlockStyle}" />
                             <TextBlock Text="{Binding ShippingAddress.Street}"    />
                             <CheckBox IsChecked="{Binding IsRemoved}" />
-                            <Button Background="Red" Foreground="White" Content="Usuń" 
-                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.RemoveCommand}"
-                                    CommandParameter="{Binding .}"
-                                    />
+                     
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
