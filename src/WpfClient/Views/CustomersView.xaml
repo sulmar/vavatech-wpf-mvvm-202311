@@ -21,7 +21,7 @@
     <Grid>
 
         <StackPanel>
-           
+
             <Button Width="150" Command="{Binding SendCommand}">Send</Button>
             <Button Width="150" Command="{Binding PrintCommand}">Print</Button>
 
@@ -34,17 +34,27 @@
                         <StackPanel Orientation="Horizontal">
                             <Button Background="Red" Foreground="White" Content="Usuń" 
                Command="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=DataContext.RemoveCommand}"
-               CommandParameter="{Binding .}"
-               Visibility="{Binding IsRemoved, Converter={StaticResource BooleanToVisibilityConverter}}"
-               
-               />
+               CommandParameter="{Binding .}" >
+
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsRemoved}" Value="True">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+
+                            </Button>
+
                             <TextBlock Text="{Binding FirstName}"  />
                             <TextBlock Text="{Binding LastName}"  />
                             <TextBlock Text="{Binding Email}" Style="{StaticResource LongTextBlockStyle}" />
                             <TextBlock Text="{Binding ShippingAddress.City}"  Style="{StaticResource LongTextBlockStyle}" />
                             <TextBlock Text="{Binding ShippingAddress.Street}"    />
                             <CheckBox IsChecked="{Binding IsRemoved}" />
-                     
+
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
