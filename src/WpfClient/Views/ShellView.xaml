@@ -15,8 +15,10 @@
     <Grid>
         <DockPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <Button Content="Customers" Command="{Binding NavigateToCustomersCommand}" />
-                <Button Content="Items" Command="{Binding NavigateToItemsCommand}" />
+                <Button Content="Customers" Command="{Binding NavigateToCommand}" 
+                        CommandParameter="Customers" />
+                <Button Content="Items" Command="{Binding NavigateToCommand}" 
+                        CommandParameter="Items" />
             </StackPanel>
             <Frame Name="ContentFrame" Source="CustomersView.xaml" />
         </DockPanel>
