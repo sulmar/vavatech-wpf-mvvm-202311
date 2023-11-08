@@ -3,6 +3,7 @@ using Domain.Abstractions;
 using Domain.Models;
 using Infrastructure;
 using Infrastructure.Fakers;
+using Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,9 @@ namespace WpfClient
 
                 return faker.Generate(100);
             });
+
+            services.AddSingleton<IMessageService, FakeMessageService>();
+            services.AddSingleton<IMessageService, RealMessageService>();
 
             return services.BuildServiceProvider();
 

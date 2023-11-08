@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Domain.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace WpfClient.Views
         {
             InitializeComponent();
 
-            this.DataContext = App.Current.Services.GetService<CustomersViewModel>();
+            this.DataContext = App.Current.Services.GetRequiredService<CustomersViewModel>();
         }
     }
 }
