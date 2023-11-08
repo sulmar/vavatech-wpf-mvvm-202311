@@ -47,11 +47,18 @@
             <Button Width="100" Height="100"  Command="{Binding SendCommand}"
                     Template="{StaticResource RoundedButtonTemplate}"
                     Background="Green"
-                    >Send</Button>
+                    >
+                <Image Source="{StaticResource PrintImage}" />
+
+            </Button>
             <Button Width="100"  Height="100" Command="{Binding PrintCommand}"
                     Background="Blue"
                     Template="{StaticResource RoundedButtonTemplate}"
-                    >Print</Button>
+                    >
+
+                <Image Source="{StaticResource PrintImage}" />
+
+            </Button>
 
             <ListBox ItemsSource="{Binding Customers}"
                      SelectedItem="{Binding SelectedCustomer}"
