@@ -53,4 +53,12 @@ public partial class CustomersViewModel : BaseViewModel
     private bool isSelectedCustomer => SelectedCustomer != null;
 
     bool CanSend => isSelectedCustomer;
+
+
+    [RelayCommand]
+    void Remove(Customer customer)
+    {
+        if (Customers.Contains(customer))   
+            Customers.Remove(customer);
+    }
 }
