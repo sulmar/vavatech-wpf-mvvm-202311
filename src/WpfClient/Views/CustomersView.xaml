@@ -10,9 +10,31 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CustomersView">
 
-    <!--<Page.Resources>
-        <c:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" FalseValue="Hidden" />
-    </Page.Resources>-->
+    <Page.Resources>
+
+        <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="Button">
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="90" Padding="5"
+                    Name="border">
+
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  />
+
+            </Border>
+
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8" />
+                    <Setter Property="Foreground" Value="#FF4788c8" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+    </Page.Resources>
 
     <!--<d:Page.DataContext>
         <viewModel:CustomersViewModel/>
@@ -22,8 +44,14 @@
 
         <StackPanel>
 
-            <Button Width="150" Command="{Binding SendCommand}">Send</Button>
-            <Button Width="150" Command="{Binding PrintCommand}">Print</Button>
+            <Button Width="100" Height="100"  Command="{Binding SendCommand}"
+                    Template="{StaticResource RoundedButtonTemplate}"
+                    Background="Green"
+                    >Send</Button>
+            <Button Width="100"  Height="100" Command="{Binding PrintCommand}"
+                    Background="Blue"
+                    Template="{StaticResource RoundedButtonTemplate}"
+                    >Print</Button>
 
             <ListBox ItemsSource="{Binding Customers}"
                      SelectedItem="{Binding SelectedCustomer}"
@@ -38,7 +66,7 @@
                Visibility="{Binding IsRemoved, Converter={c:BooleanToVisibilityConverter}}"
                
                >
-                                
+
 
                             </Button>
 
