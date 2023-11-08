@@ -18,11 +18,16 @@
                     BorderThickness="1"
                     CornerRadius="90" Padding="5"
                     Name="border">
+                <StackPanel>
 
-                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                  />
+                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    />
 
+                
+                </StackPanel>
+
+              
             </Border>
 
 
